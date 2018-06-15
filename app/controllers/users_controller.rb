@@ -7,7 +7,8 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             flash[:success] = "Nouveau utilisateur #{@user.username} enregistrée"
-            redirect_to signup_path
+            session[:user_id] = user.id
+            redirect_to user_path(user)
         else
            render 'new' 
         end
