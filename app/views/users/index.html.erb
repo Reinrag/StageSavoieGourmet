@@ -1,6 +1,9 @@
 <h1 align="center">Liste des utilisateurs</h1>
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
+        <div align="center">
+            <%= will_paginate @users %>
+        </div>
         <ul class="list-group">
             <% @users.each do |user| %>
                 <div class="panel pannel-default">
@@ -12,6 +15,9 @@
                     </div>
                 </div>
             <% end %>
-        </ul> 
+        </ul>
+        <div align="center">
+            <%= will_paginate @users %>
+        </div>
     </div>
 </div>
