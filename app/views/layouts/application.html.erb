@@ -19,8 +19,12 @@
           <a href="<%= root_path %>" class="navbar-brand">Savoie Gourmet</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="<%= signup_path %>">S'inscrire</a></li>
+          <% if logged_in? %>
           <li><%= link_to "Se déconnecter", logout_path, method: :delete %></li>
+          <% else %>
+          <li><a href="<%= signup_path %>">S'inscrire</a></li>
+          <li><%= link_to "Se connecter", login_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
