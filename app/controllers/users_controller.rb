@@ -7,10 +7,11 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new(user_params)
-        if @user.save
-            flash[:success] = "Nouveau utilisateur #{@user.username} enregistrée"
-            session[:user_id] = user.id
-            redirect_to user_path(user)
+        if @user.valid?
+            @user.save
+            UserMailer.confirm(@user).deliver_now
+            flash[:success] = "Votre compte à bien été créé, vous devriez recevoir un mail de confirmation"
+            redirect_to signup_path
         else
            render 'new' 
         end
@@ -34,6 +35,20 @@ class UsersController < ApplicationController
     
     def index
         @users = User.paginate(:page => params[:page], :per_page => 5)
+    end
+    
+    def confirm
+        @user = User.find(params[:id])
+        if @user.confirmation_token == params[:token]
+            @user.update_attributes(confirmed: true, confirmation_token: nil)
+            @user.save(validate: false)
+            session[:auth] = @user.to_session
+            flash[:success] = "Votre compte a bien été confirmé"
+            redirect_to user_path(user)
+        else
+            flash[:danger] = "Ce token ne semble pas valide"
+            redirect_to signup_path
+        end
     end
     
     private 

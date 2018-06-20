@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_15_073147) do
+ActiveRecord::Schema.define(version: 2018_06_20_073542) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_06_15_073147) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.boolean "confirmed?", default: false
+    t.string "confirmation_token"
   end
 
 end
