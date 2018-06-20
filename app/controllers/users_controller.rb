@@ -40,11 +40,11 @@ class UsersController < ApplicationController
     def confirm
         @user = User.find(params[:id])
         if @user.confirmation_token == params[:token]
-            @user.update_attributes(confirmed: true, confirmation_token: nil)
+            @user.update_attributes(confirmed?: true, confirmation_token: nil)
             @user.save(validate: false)
             session[:auth] = @user.to_session
             flash[:success] = "Votre compte a bien été confirmé"
-            redirect_to user_path(user)
+            redirect_to login_path
         else
             flash[:danger] = "Ce token ne semble pas valide"
             redirect_to signup_path

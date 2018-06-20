@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
                     format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   has_secure_password
   has_secure_token :confirmation_token
+  def to_session
+    {id: id}
+  end
 end
