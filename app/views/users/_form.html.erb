@@ -1,0 +1,43 @@
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class:"row">
+        <%= form_for(@user, :html => {class: 'form-horizontal', role: "form"}) do |f| %>
+        <div class="form-group">
+            <div class="col-sm-2 control-label" >        
+                <%= f.label :username, "Nom d'utilisateur" %>
+            </div>
+            <div class="col-sm-6">
+                <%= f.text_field :username, class: 'form-control', placeholder: "Votre nom d'utilisateur" %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <%= f.label :email, "Email" %>
+            </div>
+            <div class="col-sm-6">
+                <%= f.text_field :email, class: 'form-control', placeholder: "Votre email" %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <%= f.label :password, "Mot de passe" %>
+            </div>
+            <div class="col-sm-6">
+                <%= f.password_field :password, class: 'form-control', placeholder: "Votre mot de passe" %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+                <%= f.submit(@user.new_record? ? "Créer un compte" : "Mettre à jour", class:"btn btn-success") %>
+            </div>
+        </div>
+    <% end %>
+</div>
