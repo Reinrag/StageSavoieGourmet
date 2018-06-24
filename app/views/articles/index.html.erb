@@ -14,6 +14,7 @@
             <td> <%= article.titre %> </td>
             <td> <%= article.description %> </td>
             <td> <%= link_to "Lire l'article", article_path(article), class:"btn btn-info" %> </td>
+            <td> <%= link_to "Effacer l'article", article_path(article), method: :delete, class:"btn btn-danger" %> </td>
         </tr>
         
         <% end %>
