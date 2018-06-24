@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Information</th>
+            <th>Action</th>
+        </tr>
+    </thead>  
+        <% obj.each do |article| %>
+    <tbody>   
+        <tr> 
+            <td> <%= article.titre %> </td>
+            <td> <%= article.description %> </td>
+            <td><small> Ecrit par :<strong><%= article.user.username if article.user %></strong> il y a <%= time_ago_in_words(article.created_at) %></small></td>
+            <td> <%= link_to "Lire l'article", article_path(article), class:"btn btn-info" %> </td>
+            <td> <%= link_to "Effacer l'article", article_path(article), method: :delete, class:"btn btn-danger" %> </td>
+        </tr>
+        
+        <% end %>
+    </tbody> 
+</table>
