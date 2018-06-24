@@ -1,0 +1,31 @@
+<div class="row">
+    <%= form_for @article do |f| %>
+    <div class="form-group">
+        <div class="col-sm-2 control-label" >        
+            <%= f.label :titre, "Titre de l'article" %>
+        </div>
+        <div class="col-sm-6">
+            <%= f.text_field :titre, class: 'form-control', placeholder: "Le titre de votre article" %>
+        </div>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="form-group">
+        <div class="col-sm-2 control-label" >        
+            <%= f.label :description, "Titre de l'article" %>
+        </div>
+        <div class="col-sm-6">
+            <%= f.text_area :description, class: 'form-control', placeholder: "La description de votre article" %>
+        </div>
+    </div>
+</div>
+</br>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+            <%= f.submit %>
+        </div>
+    </div>
+    <% end %>
+</div>
