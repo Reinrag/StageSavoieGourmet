@@ -1,6 +1,6 @@
 <% if @article.errors.any? %>
   <div class="alert alert-danger">
-    <h5> Erreur à cause des raison suivante(s)</h5>
+    <h5> Erreur à cause des raison suivantes</h5>
     <ul>
       <% @article.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -24,7 +24,7 @@
 <div class="row">
     <div class="form-group">
         <div class="col-sm-2 control-label" >        
-            <%= f.label :description, "Titre de l'article" %>
+            <%= f.label :description, "Contenue de l'article" %>
         </div>
         <div class="col-sm-6">
             <%= f.text_area :description, class: 'form-control', placeholder: "La description de votre article" %>
@@ -35,7 +35,7 @@
 <div class="row">
     <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
-            <%= f.submit %>
+           <%= f.submit(@article.new_record? ? "Créer un article" : "Mettre à jour l'article", class:"btn btn-success") %>
         </div>
     </div>
     <% end %>
